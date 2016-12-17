@@ -10,11 +10,12 @@ locale                   : "en"
 title                    : "Semaphore"
 title_separator          : "-"
 name                     : "Shawn M. Chapla"
-description              : "Programmer. Writer. Earthling."
+description              : "Shawn M. Chapla's personal website where he posts
+articles and blog entries about programming, writing, and various other topics."
 url                      : "https://shwnchpl.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "shwnchpl/shwnchpl.github.io"
-teaser                   : "/assets/images/537x536.jpg" # path of fallback teaser image, e.g. "/assets/images/502x300.png"
+teaser                   : # path of fallback teaser image, e.g. "/assets/images/502x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
@@ -77,10 +78,10 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an amazing person."
-  location         : "Somewhere"
+  name             : "Shawn M. Chapla"
+  avatar           : "/assets/images/537x536.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  bio              : "Programmer. Writer. Student."
+  location         : "Portland, Maine"
   email            :
   uri              :
   bitbucket        :
@@ -89,7 +90,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           :
+  github           : "shwnchpl"
   google_plus      :
   keybase          :
   instagram        :
@@ -240,7 +241,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
+      read_time: false
       comments: # true
       share: true
       related: true
