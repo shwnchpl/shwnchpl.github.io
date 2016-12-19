@@ -12,7 +12,7 @@ title_separator          : "-"
 name                     : "Shawn M. Chapla"
 description              : "Shawn M. Chapla's personal website where he posts
 articles and blog entries about programming, writing, and various other topics."
-url                      : "https://shwnchpl.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "http://shwnchpl.com" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "shwnchpl/shwnchpl.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/502x300.png"
