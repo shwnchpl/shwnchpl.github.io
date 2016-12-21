@@ -18,6 +18,7 @@ repository               : "shwnchpl/shwnchpl.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/502x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
+show_date_in_archive     : true # show date in archive list
 comments:
   provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:
@@ -105,7 +106,7 @@ author:
   stackoverflow    : # "123456/username" (the last part of your profile url, e.g. http://stackoverflow.com/users/123456/username)
   steam            :
   tumblr           :
-  twitter          :
+  twitter          : "shwnchpl"
   vine             :
   weibo            :
   xing             :
