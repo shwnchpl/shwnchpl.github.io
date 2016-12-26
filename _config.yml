@@ -177,10 +177,10 @@ sass:
 
 
 # Outputting
-permalink: /:categories/:title/
+permalink: /blog/:categories/:title/ # Hardcode /blog as a URL prefix
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: America/New_York # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins
@@ -250,6 +250,7 @@ defaults:
       comments: true
       share: false
       related: true
+      prev_next: false # Don't displace prev/next at bottom of post.
   - scope:
       path: ""
       type: pages

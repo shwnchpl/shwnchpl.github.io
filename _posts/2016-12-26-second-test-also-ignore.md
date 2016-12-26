@@ -1,6 +1,6 @@
 ---
 layout: single
-title: This is a test post.
+title: This is a second test post.
 tags: test
 ---
 
