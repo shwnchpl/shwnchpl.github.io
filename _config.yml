@@ -151,7 +151,7 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 # Conversion
 markdown: kramdown
-highlighter: rouge
+highlighter: false # rouge
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
@@ -167,6 +167,8 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
+  syntax_highlighter_opts: # disable rouge highlighting
+    disable: true
 
 
 # Sass/SCSS
@@ -253,6 +255,7 @@ defaults:
       related: true
       prev_next: false # Don't displace prev/next at bottom of post.
       use_math: false # Don't include Mathjax by default.
+      syntax_highlighting: false # Don't use highlight.js highlighting by default.
   - scope:
       path: ""
       type: pages
