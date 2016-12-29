@@ -252,6 +252,7 @@ defaults:
       share: false
       related: true
       prev_next: false # Don't displace prev/next at bottom of post.
+      use_math: false # Don't include Mathjax by default.
   - scope:
       path: ""
       type: pages
