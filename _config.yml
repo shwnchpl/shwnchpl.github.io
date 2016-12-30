@@ -256,6 +256,7 @@ defaults:
       prev_next: false # Don't displace prev/next at bottom of post.
       use_math: false # Don't include Mathjax by default.
       syntax_highlighting: false # Don't use highlight.js highlighting by default.
+      hightlight_style: default # Default highlight style is default.
   - scope:
       path: ""
       type: pages
