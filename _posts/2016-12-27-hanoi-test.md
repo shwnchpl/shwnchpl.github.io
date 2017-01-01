@@ -275,7 +275,7 @@ MapAt[stayStill[#, count] &, state,
 and this will return a state modified such that each disk not in focus has stayed still the required number of times.  Now all that's left is to call `` MapAt[moveSome[#, count], ..., {focus}] `` on the result of this to move the disk that is currently in focus as required.  Here's a listing of the completed function.
 
 ``` mathematica
-FancyHelper[focus_, 0, start_, end_, state_] := Module[{count = end - start},
+fancyHelper[focus_, 0, start_, end_, state_] := Module[{count = end - start},
   MapAt[moveSome[#, count] &,
     MapAt[stayStill[#, count] &, state,
       Map[{#} &, Drop[Range[Length[state]], {focus}]]],
@@ -410,3 +410,7 @@ There is, however, something of a difference in execution time between the two f
 ```
 
 There could be any number of reasons for this, including the imperfections of recursion optimization in the Wolfram Language, the complexity of the various functions employed by `` Fancy `` (ie. ``MapAt``, ``Range``, etc.), and the lean and somewhat hackish nature of the iterative solution.  It wouldn't be surprising if the particulars memory management in the Wolfram Language also played a role in the disparity.  Perhaps at some point in the future I'll further examine the difference between the two approaches.
+
+---
+
+The code for ``Fancy`` and ``FancyItr`` is available [here]({{ site.url }}/assets/code/2017-01-01/FancyHanoi.nb) in a Mathematica notebook and [here]({{ site.url }}/assets/code/2017-01-01/FancyHanoi.wl) in a Wolfram Language package file.
