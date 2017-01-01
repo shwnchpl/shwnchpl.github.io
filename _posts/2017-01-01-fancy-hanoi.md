@@ -1,7 +1,8 @@
 ---
 layout: single
 title: "Fancy Hanoi: Generating Ternary String List Solutions to a Towers of Hanoi Varient"
-excerpt: I'll need a custom excerpt for this one.
+excerpt:
+  "One nice thing about the traditional Tower of Hanoi puzzle is that you can move a disk over a peg if need be—that is, it is legal to move from peg-1 to peg-3 and visa versa.  One varient of the puzzle we could define—a varient I've heard called 'Fancy Hanoi'—would have all the same rules as traditional Hanoi, except instead of being able to jump over a peg in a move, it would only be legal to move a disk to an adjacent peg." 
 use_math: true
 syntax_highlighting: true
 highlight_style: solarized-light
@@ -24,8 +25,8 @@ If you're already familiar with the traditional Tower of Hanoi game, you may wan
 
 The [Tower of Hanoi](https://en.wikipedia.org/wiki/Tower_of_Hanoi) is a classic mathematical puzzle/game that was first invented in by French mathematician [Édouard Lucas](https://en.wikipedia.org/wiki/%C3%89douard_Lucas).  The puzzle is comprised of three vertical pegs and several rings.  Oftentimes, physical Tower of Hanoi sets are made of wood like the one pictured below.
 
-![Wooden Hanoi]({{ site.url }}/assets/images/2016-12-27-hanoi/wooden_hanoi.jpg){: width="70%" }
-*[A Link](nowhere)* - and explanation
+![Wooden Hanoi]({{ site.url }}/assets/images/2017-01-01-hanoi/wooden_hanoi.jpg){: width="70%" }
+*Image credit: Wikipedia user [Evanherk](https://en.wikipedia.org/wiki/User:Evanherk) - licensed [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en)*
 {: .image_caption}
 
 The rules of the puzzle are quite simple: you have several disks stacked increasing in size from large to small on one of three pegs (generally the leftmost) and the goal is to move them all to another of the three pegs (generally the rightmost).  There are two small caveats that make the puzzle interesting rather than just an excuse to fool around with wooden rings.  1) Only one disk may be moved at a time and 2) A larger disk can never be stacked upon a smaller disk.
@@ -38,8 +39,8 @@ The least-move solution to the puzzle can be very aptly conceptualized recursive
 
 In the event that a disk does not have a stack of disks on top of it, of course, it is legal to simply move it onto another peg, provided that peg does not already hold any smaller disks-- in fact, this is the base case of the recursive solution.  For instance, in a game with only one disk, to move from $S$ to $D$ would require only one move.  With two disks, in order to move the stack on $S$ to $D$, first the bottom disk $d_2$ must be exposed by moving all disks on top of it (in this case, just $d_1$) to the auxiliary peg A.  Once the top peg $d_1$ has been moved to $A$, the bottom peg $d_2$ can be moved directly $S$ to $D$.  Finally, $d_1$ can be moved from $A$ directly to D.  This process is illustrated with 4 disks in the animated gif below. 
 
-![Animated Hanoi]({{ site.url }}/assets/images/2016-12-27-hanoi/animated_hanoi.gif){: width="70%" }
-*[A Link](nowhere)* - and explanation
+![Animated Hanoi]({{ site.url }}/assets/images/2017-01-01-hanoi/animated_hanoi.gif){: width="70%" }
+*Image credit: [André Karwath](https://commons.wikimedia.org/wiki/User:Aka) - licensed [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/deed.en)*
 {: .image_caption}
 
 For cases with more than two disks, it’s important to note that the peg acting as auxiliary depends on the peg acting as destination.  From now on, let’s refer to the three pegs as $P_1$, $P_2$, and $P_3$.  Say we’re trying to move a stack of three disks from $P_1$ to $P_3$, so we start by trying to move the bottom disk $d_3$.  For the purposes of this move, our source peg $S$ is $P_1$, our auxiliary peg $A$ is $P_2$, and our destination peg $D$ is $P_3$.
@@ -79,7 +80,7 @@ $$
 
 ### <a name="fancy_hanoi"></a>So what's this Fancy Hanoi business all about?
 
-One nice thing about the traditional Tower of Hanoi puzzle is that you can move a disk over a peg if need be— that is, it is legal to move from $P_1$ to $P_3$ and visa versa.  One varient of the puzzle we could define— a varient I've heard called "Fancy Hanoi"— would have all the same rules as traditional Hanoi, except instead of being able to jump over a peg in a move, it would only be legal to move a disk to an adjacent peg.  For instance, a disk on $P_1$ could only legally be moved to $P_2$.
+One nice thing about the traditional Tower of Hanoi puzzle is that you can move a disk over a peg if need be—that is, it is legal to move from $P_1$ to $P_3$ and visa versa.  One varient of the puzzle we could define—a varient I've heard called "Fancy Hanoi"—would have all the same rules as traditional Hanoi, except instead of being able to jump over a peg in a move, it would only be legal to move a disk to an adjacent peg.  For instance, a disk on $P_1$ could only legally be moved to $P_2$.
 
 Although we can still solve the puzzle recursively much in the same way as before, there are a few extra steps that must be taken.  The least-move solution to the puzzle can be conceptualized recursively as follows.  In order to move a stack of $n$ disks with bottom disk $d_n$ from any given source peg $S$ to any given destination peg $D$ one must
 
@@ -91,8 +92,8 @@ Although we can still solve the puzzle recursively much in the same way as befor
 
 Here's an animated gif I made of me playing through a 3 disk round of Hanoi while holding myself to the "Fancy Hanoi" rules.
 
-![Animated Fancy Hanoi]({{ site.url }}/assets/images/2016-12-27-hanoi/animated_fancy_hanoi.gif){: width="70%" }
-*[A Link](nowhere)* - and explanation
+![Animated Fancy Hanoi]({{ site.url }}/assets/images/2017-01-01-hanoi/animated_fancy_hanoi.gif){: width="70%" }
+*Software pictured is [Eric Pai](https://github.com/epai)'s [hanoi-terminal-game](https://github.com/epai/hanoi-terminal-game).*
 {: .image_caption}
 
 It turns out calculating the minimal number of moves $F_n$ necessary to solve a game of Fancy Hanoi with $n$ pegs isn't much more complicated than calculating the minimal number of moves necessary to solve a game of traditional Hanoi.  To start out, we know $F_1 = 2$ because it takes two moves to move a single peg from $P_1$ to $P_3$.  As illustrated in the above animation, moving $n$ pegs requires
@@ -150,7 +151,7 @@ And the ternary string list solution to a 3-disk round of Fancy Hanoi would be
 
 Ideally, it would be nice to have a function $Fancy: n \to L$ where $n \in \mathbb{N}$ and $L$ is a $n$-length list of $3^n$-length ternary strings denoting all states of the game from start to finish.  The time complexity of any algorithm to implement this function will be $\Omega(n \cdot 3^n)$ because the generation of each string character will require a constant number of computations and there are $n \cdot 3^n$ characters to generate.  Although there is a very nifty iterative solution to this problem (which I'll talk about [below](#fancy_iter)), first I'd like to demonstrate a relatively concise recursive solution that follows functional programming idioms.  The solution I'll present is written in the [Wolfram Language](https://en.wikipedia.org/wiki/Wolfram_Language) (the programming language used in Mathematica), but there's no reason why a similar solution couldn't be implemented in Haskell, ML, LISP, or any other functional programming language.
 
-First of all, even if we want to be able to call a function `` Fancy[n_Integer /; n > 0] `` and have it return a ternary string list, such a function certainly is not alone sufficient to recurse upon.  `` Fancy `` is going to need some kind of helper function that actually is recursive and this function is going to have to accept several arguments— namely, the bottom disk $d_n$ to be moved (which I'll also refer to as the "focus"), the size of the stack on top of $d_n$, the current source peg $S$ that $d_n$ is being moved from, the current destination peg $D$ that $d_n$ is being moved to, and finally the current state of the game.
+First of all, even if we want to be able to call a function `` Fancy[n_Integer /; n > 0] `` and have it return a ternary string list, such a function certainly is not alone sufficient to recurse upon.  `` Fancy `` is going to need some kind of helper function that actually is recursive and this function is going to have to accept several arguments—namely, the bottom disk $d_n$ to be moved (which I'll also refer to as the "focus"), the size of the stack on top of $d_n$, the current source peg $S$ that $d_n$ is being moved from, the current destination peg $D$ that $d_n$ is being moved to, and finally the current state of the game.
 
 With these considerations in mind, we can write `` Fancy `` as follows:
 
@@ -210,7 +211,7 @@ The idea here is to simply take the last character of the ternary string `` tStr
 "01222"
 ```
 
-It seems to work fine!  `` moveSome `` can be handled similarly— the only difference is that rather than just reading the current position from the last character in the string and appending it a certain number of times depending on the count, we have to actually append a new character or two depending on the count and the current position.  Much like in `` stayStill ``, the first thing we need to do is check the last character of the ternary string to get the current position.  Once we have this character, we can take advantage of the fact that there are very few legal moves to append the correct characters to the end of the string using a minimal number of comparisons.
+It seems to work fine!  `` moveSome `` can be handled similarly—the only difference is that rather than just reading the current position from the last character in the string and appending it a certain number of times depending on the count, we have to actually append a new character or two depending on the count and the current position.  Much like in `` stayStill ``, the first thing we need to do is check the last character of the ternary string to get the current position.  Once we have this character, we can take advantage of the fact that there are very few legal moves to append the correct characters to the end of the string using a minimal number of comparisons.
 
 For example, we know that any move starting from $P_1$ is not going to have a negative count while any move starting from $P_3$ is not going to have a positive count.  We also know that while a move starting from $P_2$ may have either a negative or positive count, the absolute value of its count will always be equal to one.  Because of this, we can cover all possible moves with a function written as follows.
 
@@ -237,7 +238,7 @@ Testing this out with some valid inputs yields the expected results.
 “012”
 ```
 
-Now all that’s left to do is write a function that calculates the count and then applies `` moveSome `` to the ternary string corresponding to the disk that's in focus and `` stayStill `` to all other strings.  It’s easy enough to calculate the count— all we have to do is subtract the end peg from the start peg.  As far as applying the functions goes, although it could certainly be achieved with some sort of loop that checked every iteration to see whether the current iteration index $i$ were equal to the focus, iterative rebuilding the entire state, this might end up becoming rather complicated and it wouldn't be very good functional programming style.  Fortunately, there's a far better tool for this job: MapAt.
+Now all that’s left to do is write a function that calculates the count and then applies `` moveSome `` to the ternary string corresponding to the disk that's in focus and `` stayStill `` to all other strings.  It’s easy enough to calculate the count—all we have to do is subtract the end peg from the start peg.  As far as applying the functions goes, although it could certainly be achieved with some sort of loop that checked every iteration to see whether the current iteration index $i$ were equal to the focus, iterative rebuilding the entire state, this might end up becoming rather complicated and it wouldn't be very good functional programming style.  Fortunately, there's a far better tool for this job: MapAt.
 
 [MapAt](http://reference.wolfram.com/language/ref/MapAt.html) is a very nifty function that takes a function, an expression, and a list of parts of the expression to which the function should be applied.  As an example, consider the anonymous function `` # + 1 & `` which adds 1 to watever it is passed as an argument and returns the result.  We can use MapAt to apply it to parts of a list as follows.
 
@@ -293,7 +294,7 @@ fancyHelper[focus_, 0, start_, end_, state_] := Module[{count = end - start},
 ]
 ```
 
-And there you have it— this is all we need!  Let's take the whole thing for a spin.
+And there you have it—this is all we need!  Let's take the whole thing for a spin.
 
 ```
 > Fancy[1]
@@ -361,7 +362,7 @@ FancyItr[n_] :=
   ]
 ```
 
-This is not so complicated as it might seem.  Rather than calculating $\lfloor \frac{m}{3^n} \rfloor$ each time, we can simply store our position in another varible, $p$.  Every time $m \bmod 3^n = 0$ it is time for the position to change; as such, $p$ is incremented.  In the event that $p \bmod 7 = 0$, $p$ must be incremented again to work around the fact that for our purposes the first element of the list `` ind `` is at index 1.  Once this has been done, we can rest assured that the current position of the disk in question is the character in `` ind `` at index $p \bmod 7$.  The rest of the function is relatively straightforward— just initialization and an outer loop to repeat evaluation until each ternary string has been generated.
+This is not so complicated as it might seem.  Rather than calculating $\lfloor \frac{m}{3^n} \rfloor$ each time, we can simply store our position in another varible, $p$.  Every time $m \bmod 3^n = 0$ it is time for the position to change; as such, $p$ is incremented.  In the event that $p \bmod 7 = 0$, $p$ must be incremented again to work around the fact that for our purposes the first element of the list `` ind `` is at index 1.  Once this has been done, we can rest assured that the current position of the disk in question is the character in `` ind `` at index $p \bmod 7$.  The rest of the function is relatively straightforward—just initialization and an outer loop to repeat evaluation until each ternary string has been generated.
 
 The results of `` FancyItr ``
 
@@ -423,4 +424,4 @@ There could be any number of reasons for this, including the imperfections of re
 
 ---
 
-The code for ``Fancy`` and ``FancyItr`` is available [here]({{ site.url }}/assets/code/2017-01-01/FancyHanoi.nb) in a Mathematica notebook and [here]({{ site.url }}/assets/code/2017-01-01/FancyHanoi.wl) in a Wolfram Language package file.
+The code for ``Fancy`` and ``FancyItr`` is available [here]({{ site.url }}/assets/code/2017-01-01-hanoi/FancyHanoi.nb) in a Mathematica notebook and [here]({{ site.url }}/assets/code/2017-01-01-hanoi/FancyHanoi.wl) in a Wolfram Language package file.
