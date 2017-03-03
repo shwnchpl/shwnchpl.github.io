@@ -6,11 +6,23 @@ excerpt:
 description:
   "A brief overview of the traditional Tower of Hanoi problem, followed by an explanation of the 'Fancy Hanoi' variant and two alogrithms to generate ternary string list solutions implemented in the Wolfram Language."
 featured_image: "/assets/images/2017-01-02-hanoi/wooden_hanoi.jpg"
-use_math: true
+# use_math: true
 syntax_highlighting: true
 highlight_style: solarized-light
 tags: ["functional programming", "algorithm", "discrete math"]
 ---
+
+{% raw %}
+<!-- KaTeX -->
+<link rel="stylesheet" href="/assets/css/katex.min.css">
+<script src="/assets/js/katex/katex.min.js"></script>
+<script
+src="/assets/js/katex/auto-render.min.js"></script>
+
+<div class="equation" data-expr="\displaystyle
+P(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma ^2}}"></div>
+{% endraw %}
+
 
 If you're already familiar with the traditional Tower of Hanoi game, you may want to [skip ahead](#fancy_hanoi) to the part where I start talking about Fancy Hanoi.
 
@@ -56,30 +68,31 @@ Since we know the least-moves solution to a puzzle conforming to the stated rule
 
 We know that $H_1 = 1$ because it only takes one move to move a single disk from some source $S$ to some destination $D$.  We also know that for all other $n$ numbers of pegs, in order to move a stack with bottom peg $d_n$ first we have to move the stack on top of it with bottom peg $d_{n-1}$ to the auxiliary peg $A$, then we have to move the bottom peg $d_n$ to the destination peg $D$, and finally we have to move the stack of smaller pegs from $A$ to $D$.  This means we first have to make $H_{n-1}$ moves, then 1 move, then $H_{n-1}$ moves again.  This gives us
 
-$$
+\\[
   H_n = 2 H_{n-1} + 1
-$$
+\\]
 
 So far so good.  All we need now is a bit of algebraic manipulation to express $H_n$ in closed form.  Since $H_n = 2H_{n-1} + 1$ we can say that
 
-$$
+\\[
   H_n + 1 = 2H_{n-1} + 2 = 2(H_{n-1} + 1)
-$$
+\\]
 
 If we let $X_n = H_n + 1$ then we have 
 
-$$
+\\[
   X_n = 2X_{n-1}
-$$
+\\]
 
 which is a linear homogeneous recurrence relation with the characteristic equation $x = 2$.
 
 Since $X_n$ is a linear homogeneous recurrence relation, we know that $X_n = X_0 (2)^n$.  Also, since $X_0 = H_0 + 1$ and $H_0 = 0$ (because it takes zero moves to move no disk), we can say
 
-$$
-  X_n = (1)2^n = 2^n \\\\
+\\[
+  X_n = (1)2^n = 2^n \\]
+\\[
   H_n = X_n - 1 = 2^n - 1
-$$
+\\]
 
 ### <a name="fancy_hanoi"></a>So what's this Fancy Hanoi business all about?
 
@@ -111,26 +124,28 @@ It turns out calculating the minimal number of moves $F_n$ necessary to solve a 
 
 Adding all of these moves together gives us
 
-$$
+\\[
   F_n = 3F_{n-1} + 2
-$$
+\\]
 
 This can be algebraically manipulated into a solvable linear homogeneous recurrence relation and solved much in the same way as the recurrence relation for traditional Hanoi. 
 
-First we use the same manipulation as before to get a linear homogeneous recurrence relation of the form $X_n = c_1 \cdot X_{n-1} + c_2 \cdot X_{n-2} + ... + c_d \cdot X_{n-d}$.
+First we use the same manipulation as before to get a linear homogeneous recurrence relation of the form $X_n = c_1 \cdot X_{n-1} + c_2 \cdot X_{n-2} + \ldots + c_d \cdot X_{n-d}$.
 
-$$
-  F_n = 3F_{n-1} + 2 \\\\
-  F_n + 1 = 3F_{n-1} + 3 = 3(F_{n-1} + 1) \\\\
+\\[
+  F_n = 3F_{n-1} + 2 \\
+  F_n + 1 = 3F_{n-1} + 3 = 3(F_{n-1} + 1) \\
   X_n = F_n + 1 = 3X_{n-1}
-$$
+\\] 
 
 Then we simply solve the recurrence relation.
 
-$$
-  X_n = X_0 3^n = (F_0 + 1) 3^n = (1)3^n \\\\
+\\[
+  X_n = X_0 3^n = (F_0 + 1) 3^n = (1)3^n
+\\]
+\\[
   F_n = X_n - 1 = 3^n -1
-$$
+\\]
 
 Interestingly, while an $n$ disk game of traditional Hanoi takes a minimum of $2^n - 1$ moves to solve, a $n$ disk game of Fancy Hanoi takes a minimum of $3^n - 1$ moves to solve.
 
@@ -258,12 +273,12 @@ Now all that’s left to do is write a function that calculates the count and th
 Let’s say we want to apply a certain function to every element of a list but one (because we do).  If we want to use MapAt to do this, for the list of element parts the function should be applied to, we need to pass it something like this
 
 {% raw %}
-$$ 
-  \{\{1\},\{2\},...,\{n\}\} - \{d_f\} 
-$$ 
+\\[ 
+  \{\{1\},\{2\},\ldots,\{n\}\} - \{d_f\} 
+\\] 
 {% endraw %}
 
-where $n$ is the length of our list of ternary strings and $d_f$ is the index of the ternary string corresponding to the disk that is currently in focus.  If we call `` Map[{#} &, Range[n]] `` that will give us a list {% raw %} $$\{\{1\},\{2\},...,\{n\}\}$$ {% endraw %}.  This is pretty good, but it still contains the singleton containing the index of the focus $d_f$.  What we really need is to drop the index of the focus $d_f$ from the list returned from Range before we encapsulate each element of this list as a singleton.
+where $n$ is the length of our list of ternary strings and $d_f$ is the index of the ternary string corresponding to the disk that is currently in focus.  If we call `` Map[{#} &, Range[n]] `` that will give us a list {% raw %} \\[\{\{1\},\{2\},\ldots,\{n\}\}\\] {% endraw %}.  This is pretty good, but it still contains the singleton containing the index of the focus $d_f$.  What we really need is to drop the index of the focus $d_f$ from the list returned from Range before we encapsulate each element of this list as a singleton.
 
 We can do this with the [Drop](http://reference.wolfram.com/language/ref/Drop.html) function which is able to accept a list of specific indicies to drop as a second argument.  Putting it all together, we get something like this.
 
@@ -341,13 +356,15 @@ True
 
 As you may have noticed, there’s something of a pattern in the ternary strings generated by `` Fancy ``.  Namely, the length of time a disk of magnitude $n$ (where $n$ is 1 for the smallest disk, 2 for the next smallest disk, etc.) remains on a peg is equal to $3^{n - 1}$ or $2 \cdot 3^{n-1}$.  Closer inspection reveals that, with the exception of their first stay on $P_1$, disks stay for $2 \cdot 3^{n - 1}$ steps on $P_1$ and $P_3$ while they stay for $3^{n - 1}$ steps on $P_1$.
 
-{% raw %}
-$$
-  d_1 = \text{"$\overbrace{0}^{3^0}\overbrace{1}^{3^0}\underbrace{22}_{2 \cdot 3^0}\overbrace{1}^{3^0}\underbrace{00}_{2 \cdot 3^0}...$"} \\\\
-  d_2 = \text{"$\overbrace{000}^{3^1}\overbrace{111}^{3^1}\underbrace{222222}_{2 \cdot 3^1}\overbrace{111}^{3^1}\underbrace{000000}_{2 \cdot 3^1}...$"} \\\\
-  d_3 = \text{"$\overbrace{000000000}^{3^2}\overbrace{111111111}^{3^2}\underbrace{222222222222222222}_{2 \cdot 3^2}...$"}
-$$
-{% endraw %}
+\\[
+  d_1 = \text{"$\overbrace{0}^{3^0}\overbrace{1}^{3^0}\underbrace{22}_{2 \cdot 3^0}\overbrace{1}^{3^0}\underbrace{00}_{2 \cdot 3^0}\ldots$"}
+\\]
+\\[
+  d_2 = \text{"$\overbrace{000}^{3^1}\overbrace{111}^{3^1}\underbrace{222222}_{2 \cdot 3^1}\overbrace{111}^{3^1}\underbrace{000000}_{2 \cdot 3^1}\ldots$"}
+\\]
+\\[
+  d_3 = \text{"$\overbrace{000000000}^{3^2}\overbrace{111111111}^{3^2}\underbrace{222222222222222222}_{2 \cdot 3^2}\ldots$"}
+\\]
 
 Another way we could think of it is like this: a disk of magnitude $n$ moves $P_1 \to P_2 \to P_3 \to P_3 \to P_2 \to P_1$ over and over again, staying for $3^{n - 1}$ moves at each stop until the game is over.  This means that all we need to do to know the position of a magnitude $n$ disk is at any given move $m$ is to access the list `` {0, 1, 2, 2, 1, 0} `` at index $\lfloor \frac{m}{3^n} \rfloor \bmod 6$.
 
@@ -433,3 +450,52 @@ There could be any number of reasons for this, including the imperfections of re
 ---
 
 The code for ``Fancy`` and ``FancyItr`` is available [here]({{ site.url }}/assets/code/2017-01-02-hanoi/FancyHanoi.nb) in a Mathematica notebook and [here]({{ site.url }}/assets/code/2017-01-02-hanoi/FancyHanoi.wl) in a Wolfram Language package file.
+
+{% raw %}
+<script type="text/javascript">
+
+    // grab all elements in DOM with the class 'equation'
+        var tex = document.getElementsByClassName("equation");
+
+            // for each element, render the expression attribute
+                Array.prototype.forEach.call(tex, function(el) {
+                        katex.render(el.getAttribute("data-expr"), el);
+                            });
+
+                            </script>
+<section id="content">
+This is $a$ test.
+\\[ 3x - 5 = 4^9 \\]
+</section>
+
+<script>
+  renderMathInElement(
+    document.getElementById("page__body"),
+    {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "\\[", right: "\\]", display: true},
+        {left: "@@", right: "@@", display: true},
+        {left: "$", right: "$", display: false},
+        {left: "\\(", right: "\\)", display: false}
+      ]
+    }
+  );
+</script>
+<!--
+<script type="text/javascript">
+  var scripts = document.getElementsByTagName("script");
+  for (var i = 0; i < scripts.length; i++) {
+    /* TODO: keep going after an individual parse error. */
+    var script = scripts[i];
+    if (script.type.match(/^math\/tex/)) {
+      var text = script.text === "" ? script.innerHTML : script.text;
+      var options = script.type.match(/mode\s*=\s*display/) ?
+                    {displayMode: true} : {};
+      script.insertAdjacentHTML("beforebegin",
+                                katex.renderToString(text, options));
+    }
+  }
+  document.body.className += " math_finished";
+</script> -->
+{% endraw %}
