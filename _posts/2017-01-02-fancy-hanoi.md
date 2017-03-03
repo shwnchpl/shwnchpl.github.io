@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Fancy Hanoi: Generating Ternary String List Solutions to a Tower of Hanoi Varient"
+title: "Fancy Hanoi: Generating Ternary String List Solutions to a Tower of Hanoi Variant"
 excerpt:
   "One nice thing about the traditional Tower of Hanoi puzzle is that you can move a disk over a peg if need be—that is, it's legal to move from peg-1 to peg-3 and visa versa.  One varient of the puzzle we could define—a varient I've heard called 'Fancy Hanoi'—would have all the same rules as traditional Hanoi, except instead of being able to jump over a peg in a move, it would only be legal to move a disk to an adjacent peg." 
 description:
